@@ -1,0 +1,38 @@
+n = int(input())
+m = int(input())
+b = int(input())
+time = 0
+counter = 0
+a = []
+ 
+for i in range(n):
+        a.append(int(input()))
+ 
+number = int(n / m)
+people = n - number * m
+ 
+lift = [0] * m
+ 
+for i in range(number):
+    time += 2 * m
+ 
+    for j in range(m):
+        lift[j] = a[counter * m + j]
+ 
+    time += 2 * (max(lift) - 1)
+    counter += 1
+ 
+time += people + 1
+lift = []
+ 
+for j in range(people):
+    lift.append(a[number * m + j])
+ 
+lift.append(b)
+time += b
+ 
+for i in range(len(lift)):
+    if lift[i] < b:
+        time += 1
+ 
+print(time)
