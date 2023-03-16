@@ -1,0 +1,23 @@
+n = int(input())
+s = str(input())
+ 
+replaced_s = s.replace('++', '|').replace('+', '')
+ 
+count = 0
+max_number = -1
+max_attempts = 0
+temp_attempts = 0
+ 
+for i in range(len(replaced_s)):
+    if replaced_s[i] == '-':
+        temp_attempts += 1
+    if temp_attempts > max_attempts:
+        max_attempts = temp_attempts
+        max_number = count + 1
+    if replaced_s[i] == '|':
+        count += 1
+        temp_attempts = 0
+ 
+ 
+print(count)
+print(max_number, max_attempts)
