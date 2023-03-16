@@ -1,0 +1,29 @@
+n = int(input())
+s = input()
+ 
+diff = 0
+test_arr = [diff]
+ 
+for i in range(len(s)):
+    if s[i] == '+':
+        test_arr.append(test_arr[i] + 1)
+    else:
+        test_arr.append(test_arr[i] - 1)
+ 
+diff = 1 + abs(min(test_arr))
+ 
+for i in range(len(test_arr)):
+    test_arr[i] += diff
+ 
+min_num = test_arr.index(min(test_arr)) + 1
+max_num = 0
+max_num_index = 0
+ 
+for i in range(len(test_arr)):
+    if test_arr[i] >= max_num:
+        max_num = test_arr[i]
+        max_num_index = i + 1
+ 
+print(diff)
+print(min_num)
+print(max_num_index)
