@@ -1,0 +1,19 @@
+n, m, k = map(int, input().split())
+queue = input()
+ 
+mood = 0
+count = 0
+ 
+for i in range(len(queue) - 1):
+    if queue[i] == 'O':
+        mood += m
+    elif queue[i] == 'X':
+        if queue[i + 1] == 'X':
+            if mood >= 0 and mood - k < 0:
+                count += 1
+            mood -= k
+ 
+if queue[-1] == 'O':
+    mood += m
+ 
+print(mood, count)
