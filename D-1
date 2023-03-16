@@ -1,0 +1,17 @@
+n = int(input())
+book = []
+ 
+for i in range(n):
+    a, b = map(int, input().split())
+    book.append([i + 1, a, a - b])
+ 
+min_dif = min(book, key=lambda x: x[2])[2]
+max_c = 0
+max_index = 1
+ 
+for e in book:
+    if e[2] == min_dif and e[1] >= max_c:
+        max_c = e[1]
+        max_index = e[0]
+ 
+print(max_index)
