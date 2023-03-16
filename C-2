@@ -1,0 +1,44 @@
+n: int = int(input())  # количество царств
+a: list[int] = list(map(int, input().split()))  # значения показателя A
+b: list[int] = list(map(int, input().split()))  # значения поаказателя B
+ 
+counter: int = 0  # сколько царств превосходит царство Пантелеймона
+answer_a: int = 1  # ответ W_a
+answer_b: int = 1  # ответ W_b
+ 
+ 
+# ----------------------------------------
+# Функция возвращает количество царств,
+# стоящих ниже царства Пантелеймона обходит
+# ----------------------------------------
+def get_pos(w_a: int, w_b: int) -> int:
+    global a, b
+ 
+    # темповые значения A и B при некоторых W_a, W_b
+    temp_a: list[int] = [x * w_a for x in a]
+    temp_b: list[int] = [x * w_b for x in b]
+ 
+    r: list[int] = list(map(sum, zip(temp_a, temp_b)))  # рейтинг царств
+    point: int = r[0]  # царство Пантелеймона
+    counter: int = 0  # количество царств, стоящих ниже царства Пантелеймона
+ 
+    for i in range(1, len(r)):
+        if r[i] < point:
+            counter += 1
+ 
+    return counter
+ 
+ 
+# ----------------------------------------
+ 
+ 
+for w_a in range(1, 101):
+    for w_b in range(1, 101):
+        current_counter = get_pos(w_a, w_b)
+        if get_pos(w_a, w_b) > counter:
+            counter = get_pos(w_a, w_b)
+            answer_a = w_a
+            answer_b = w_b
+ 
+print(answer_a)
+print(answer_b)
