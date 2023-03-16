@@ -1,0 +1,40 @@
+n, s = map(int, input().split())
+p =  [0] * n
+v = [0] * n
+ 
+for i in range(n):
+    a, b = map(int, input().split())
+    p[i] = a
+    v[i] = b
+ 
+maximp = 0
+ 
+if s < min(p):
+    print(0, 0)
+else:
+    i = 0
+    current = 0
+    start = 0
+    end = 0
+    imp = 0
+    answer_end = 0
+    answer_start = 0
+    max_imp = 0
+ 
+    while end < n:
+        current += p[end]
+        imp += v[end]
+ 
+        while current > s:
+            current -= p[start]
+            imp -= v[start]
+            start += 1
+ 
+        if imp > max_imp:
+            answer_start = start
+            answer_end = end
+            max_imp = imp
+ 
+        end += 1
+ 
+    print(answer_start + 1, answer_end + 1)
