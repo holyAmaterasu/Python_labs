@@ -1,0 +1,16 @@
+n, k = map(int, input().split())
+learned = set(map(int, input().split()))
+p, m = map(int, input().split())
+ 
+solved_tasks = []
+ 
+for i in range(m):
+    z, s, *u = map(int, input().split())
+ 
+    if len(learned & set(u)) == s:
+        solved_tasks.append(z)
+ 
+solved_tasks = sorted(list(set(solved_tasks)))
+ 
+print(len(solved_tasks))
+print(*solved_tasks)
