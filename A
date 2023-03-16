@@ -1,0 +1,17 @@
+n, r = map(int, input().split())
+melody = input()
+to_wake_up = 0
+count = 0
+
+for i in melody:
+    if i == 'D':
+        to_wake_up -= 1
+        count += 1
+    elif i == 'U':
+        to_wake_up += 1
+        count += 1
+    if to_wake_up == r:
+        print(count)
+        break
+if to_wake_up != r:
+    print(-1)
