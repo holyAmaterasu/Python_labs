@@ -1,0 +1,19 @@
+n = int(input())
+ 
+d = {}
+counter = 0
+ 
+for i in range(n):
+    id, status = map(str, input().split())
+ 
+    if id not in d and id != '0':
+        d[id] = status
+ 
+        if status == 'R':
+            counter += 1
+ 
+    elif status == 'A':
+        counter -=1
+ 
+    elif status == '?':
+        print(counter)
