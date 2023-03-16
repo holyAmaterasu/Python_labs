@@ -1,0 +1,24 @@
+n = int(input())
+book = list(map(lambda e: str(bin(int(e)))[2:], input().split()))
+ 
+ 
+def foo(element):
+    count = 0
+    for index in range(len(element)):
+        if element[index] == '1':
+            count += 1
+    return count
+ 
+ 
+count_of_pres = 0
+min_count_of_spices = 10**10
+ 
+for i in book:
+    min_count_of_spices = min(min_count_of_spices, foo(i))
+ 
+for i in book:
+    if foo(i) == min_count_of_spices:
+        count_of_pres += 1
+ 
+print(count_of_pres)
+print(min_count_of_spices)
