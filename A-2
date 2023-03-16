@@ -1,0 +1,20 @@
+import bisect
+ 
+n, m = map(int, input().split())
+days = list(map(int, input().split()))
+requests = list(map(int, input().split()))
+ 
+min_days = max_days = 0
+for req in requests:
+    # находим ближайший солнечный день после запроса с помощью бинарного поиска
+    next_sunny_day_idx = bisect.bisect_right(days, req)
+    if next_sunny_day_idx < n:
+        next_sunny_day = days[next_sunny_day_idx]
+        # вычисляем разницу между днем запроса и ближайшим солнечным днем
+        days_diff = next_sunny_day - req
+        if not min_days or days_diff < min_days:
+            min_days = days_diff
+        if days_diff > max_days:
+            max_days = days_diff
+ 
+print(min_days, max_days)
