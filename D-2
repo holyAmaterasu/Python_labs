@@ -1,0 +1,38 @@
+n, s = map(int, input().split())
+t = list(map(int, input().split()))
+ 
+count_item = 0
+count_time = 0
+i = 0
+t.sort(reverse=True)
+sumt = 0
+ 
+for j in range(len(t)):
+    sumt += t[j]
+ 
+if sumt <= s:
+    print(len(t))
+    print(sumt)
+else:
+    while count_time < s:
+        if i == (len(t) - 1):
+            break
+ 
+        if t[i] != t[i + 1]:
+            count_item += 1
+            count_time += t[i]
+            i += 1
+        elif t[i] == t[i + 1]:
+            while t[i] == t[i + 1]:
+                count_item += 1
+                count_time += t[i]
+                i += 1
+                if i == (len(t) - 1):
+                    break
+            if t[i] == t[i - 1]:
+                count_item += 1
+                count_time += t[i]
+                i += 1
+ 
+    print(count_item)
+    print(count_time)
