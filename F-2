@@ -1,0 +1,37 @@
+t, n, k = map(int, input().split())
+line = list(map(int, input().split()))
+ 
+count_obj = 0
+all_time = 0
+ 
+for i in range(n):
+    all_time += line[i]
+ 
+all_time *= 2
+all_time += k * n
+ 
+if all_time < t:
+    t -= all_time
+    print(n)
+    t /= n
+    print('%.5f'%(k + t))
+elif all_time == t:
+    print(n)
+    print('%.5f'%k)
+else:
+    for i in range(n):
+        allroad = line[i] * 2 + k
+        if allroad < t:
+            count_obj += 1
+            t -= allroad
+        elif allroad >= t:
+            print(count_obj)
+ 
+            if count_obj > 0:
+                t /= count_obj
+                print('%.5f'%(k + t))
+            else:
+                print('%.5f'%0)
+ 
+            break
+ 
