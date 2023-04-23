@@ -1,0 +1,30 @@
+n, m, k = map(int, input().split())
+first_box = list(map(int, input().split()))
+fb_count = 0  # счетчик взятий из первой коробки
+second_box = list(map(int, input().split()))
+sb_count = 0  # счетчик взятий из второй коробки
+setf = set(first_box)  # множество всех (уникальных) карточек в первой коробке
+sets = set(second_box)  # множество всех (уникальных) карточек во второй коробке
+all_carts = setf.union(sets)  # множество всех (уникальных) карточек
+i = 0
+j = 0
+bag = 0  # "сумка" Евлампия с текущими карточками
+collection = set()  # Общая коллекция Евлампия
+while collection != all_carts:  # Пока коллекция не станет равна общему множеству карточек
+    while bag < k and i < len(first_box):  # Пробегаемся по первой коробке пока она сумка не полная и она не пуста
+        if first_box[i] not in collection:  # Если еще не была в коллекции
+            collection.add(first_box[i])  # Добавляем в коллекцию
+            fb_count += 1  # Прибавляем к счетчику взятий
+            bag += 1  # Заполняем сумку
+        i += 1  # Переходим к следующей карточке
+    bag = 0  # Прошли павильон, опустошаем сумку
+    # Далее аналогично
+    while bag < k and j < len(second_box):
+        if second_box[j] not in collection:
+            collection.add(second_box[j])
+            sb_count += 1
+            bag += 1
+        j += 1
+    bag = 0
+
+print(fb_count, sb_count)
