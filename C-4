@@ -1,0 +1,10 @@
+n=int(input())
+current_point=0#хранит координату
+pavilion=[]#создаем пустой павильон, для заполнения по индексу(так быстрее)
+for i in range(n):
+	shift, flower = map(str, input().split())
+	current_point+=int(shift)
+	pavilion.append((current_point, flower))#заполняем павильон списками(пара значений)
+pavilion.sort()#Сортируем павильон
+for item in pavilion:
+   print(item[1]) 
