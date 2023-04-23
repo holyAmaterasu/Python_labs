@@ -1,0 +1,23 @@
+n, d = map(int, input().split())
+colors = list(map(int, input().split()))
+
+colors.sort()  # сортировка списка цветов
+
+groups = []
+current_group = [colors[0]]  # начинаем новую группу с первого цвета
+
+for i in range(1, n):
+    if colors[i] - current_group[-1] <= d:
+        current_group.append(colors[i])  # добавляем цвет в текущую группу
+    else:
+        groups.append(current_group)  # добавить текущую группу к группам
+        current_group = [colors[i]]  # начать новую группу с текущего цвета
+
+groups.append(current_group)  
+
+num_groups = len(groups)
+min_group_size = min(len(group) for group in groups)
+max_group_size = max(len(group) for group in groups)
+
+print(num_groups, min_group_size, max_group_size, sep='\n')
+ 
