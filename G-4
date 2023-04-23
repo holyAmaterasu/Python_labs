@@ -1,0 +1,22 @@
+n, m = map(int, input().split())
+dic={} #key=название платформы value=спискок номеров фотографий
+count_ph=0 #Счетчки всех обработанных фотографий
+len_dic=0 #Счетчик длины(в надежде ускорить прогу)
+for i in range(m):
+   current_ph_num, name=map(str,input().split())
+   if name not in dic: #Если папки еще нет
+      dic[name]=[int(current_ph_num)] #Создаем
+      len_dic+=1
+   else:
+      dic[name].append(int(current_ph_num)) #Если есть добавляем номер фотки
+for key in dic.keys():
+	if len(dic[key])>1:
+		temp=(max(dic[key])-min(dic[key]))+1 #Считаем сколько фото в каждой папке
+	else:
+		temp=1
+	dic[key]=temp #Меняем значения в словаре на колво фотографий
+	count_ph+=temp #Считаем обработанные фотографии
+print(n-count_ph)
+print(len_dic)
+print(min(dic.values()))
+print(max(dic.values()))
