@@ -1,0 +1,16 @@
+n=int(input())
+t=list(map(int, input().split()))
+messeges=list(input())
+min_time=9999999999
+max_time=0
+sended=[]
+for i in range(n):
+   if messeges[i]=='S':
+      sended.append(t[i])
+   if (len(sended))>1:
+      temp=sended[-1]-sended[-2]
+      if min_time>temp:
+         min_time=temp
+      if max_time<temp:
+         max_time=temp
+print(min_time, max_time, sep="\n")
