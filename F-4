@@ -1,0 +1,21 @@
+n=int(input())
+top={} #key=скульптура value=колво раз которое встречается
+flower_kinds=set()
+count_ph=0 #общий счетчик всех фото
+for i in range(n):
+	photo=list(map(str, (input().split())))
+	sculp=photo[0]
+	kinds=set(photo[2:])
+	if sculp not in top: #Если скульптура не в подборке
+		top[sculp]=1 #Добавляем
+		count_ph+=1
+		index=i #Храним номер последнего добавленного фото
+	elif len(kinds-flower_kinds)!=0:
+		top[sculp]+=1
+		index=i #Храним номер последнего добавленного фото
+		count_ph+=1
+	flower_kinds.update(kinds) #Получаем новое множество зафиксированных видов
+print(count_ph) #Общее колво фото
+print(len(top)) #кол-во различных скульптур
+print(max(top.values())) #макс фото
+print(index+1) #мин эффективность
