@@ -1,0 +1,26 @@
+n, m = map(int, input().split())
+ans = []
+tolearn = {}
+ 
+for i in range(n):
+    temp = list(map(str, input().split()))
+    if temp[0] == "A":
+        for j in range(2, len(temp)):
+            if temp[j] not in tolearn:
+                tolearn[temp[j]] = [1, 1]
+            else:
+                tolearn[temp[j]][0] += 1
+                tolearn[temp[j]][1] += 1
+    else:
+        for ind in range(2, len(temp)):
+            if temp[ind] not in tolearn:
+                tolearn[temp[ind]] = [0, 1]
+            else:
+                tolearn[temp[ind]][1] += 1
+for key in tolearn.keys():
+    half = (tolearn[key][1]) / 2
+    if tolearn[key][0] <= half:
+        ans.append(int(key))
+ans = sorted(ans)
+print(len(ans))
+print(*ans)
