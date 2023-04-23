@@ -1,0 +1,16 @@
+n, d = map(int, input().split())
+a = list(map(int, input().split()))
+res = []
+current = 0
+for i in range(n):
+    if d == 1:
+        res.append(a[i] + 1)
+    else:
+        if a[i] >= current:
+            current = a[i] + d
+            res.append(current)
+        else:
+            continue
+ 
+print(len(res))
+print(*res)
