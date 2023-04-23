@@ -1,0 +1,31 @@
+n, k = map(int, input().split())
+count_open = 0
+count_limit = 0
+opened1 = {}
+opened = set()
+for i in range(n):
+    temp = list(map(str, input().split()))
+    if count_limit <= k:
+        for j in range(1, len(temp)):
+            if temp[j] not in opened:
+                opened.add(temp[j])
+                count_open += 1
+                count_limit += 1
+                if temp[j] not in opened1:
+                    opened1[temp[j]] = 1
+                else:
+                    opened1[temp[j]] += 1
+ 
+    else:
+        opened = set()
+        count_limit = 0
+        for j in range(1, len(temp)):
+            opened.add(temp[j])
+            count_open += 1
+            count_limit += 1
+            if temp[j] in opened1:
+                opened1[temp[j]] += 1
+            else:
+                opened1[temp[j]] = 1 
+print(count_open)
+print(max(opened1.values()))
