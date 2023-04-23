@@ -1,0 +1,52 @@
+n, m = map(int, input().split())
+piece = list(map(int, input().split()))
+cut = 0  
+pizza = 0
+debt = 0
+for i in range(len(piece)):
+    pizza += piece[i]
+pizza /= m
+pizza = int(pizza)
+ 
+box = []
+for i in range(pizza):
+    box.append(m)
+sum_piece = 0
+j = 0
+ 
+for i in range(len(piece)):
+    sum_piece = 0
+    for k in range(len(box)):
+        sum_piece += box[k]
+    if sum_piece == piece[i]:
+        break
+    if box[j] == piece[i]:
+        j += 1
+        continue
+    if box[j] == m and piece[i] < box[j]:
+        cut += 1
+    if box[j] > piece[i]:
+        cut += 1
+        box[j] -= piece[i]
+    elif box[j] == piece[i]:
+        box[j] = 0
+        j += 1
+        if j != (pizza) and box[j] != piece[i]:
+            cut += 1
+    elif box[j] < piece[i]:
+        debt = piece[i] - box[j]
+        box[j] = 0
+        j += 1
+        if j != (pizza) and box[j] != debt and debt % box[j] != 0:
+            cut += 1
+        while box[j] < debt:
+            debt -= box[j]
+            box[j] = 0
+            j += 1
+        if j != (pizza) and box[j] != debt:
+            cut += 1
+        box[j] -= debt
+        if box[j] == 0:
+            j += 1
+ 
+print(cut)
